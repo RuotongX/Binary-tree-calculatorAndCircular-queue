@@ -28,7 +28,7 @@ public class Tree {
 //			creatingTree
 //		}
 //
-//	}
+	}
 
 	private TNode createBracket(TNode tree, char[] exps, int i) {
 		tree.left = new TNode('(', tree);
