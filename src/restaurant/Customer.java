@@ -6,6 +6,7 @@ public class Customer {
 	private String name;
 	private int servedtime;
 	private String starttime;
+	private int startT;
 	private String leavetime;
 	private LocalTime localTime;
 	private int number;
@@ -16,8 +17,13 @@ public class Customer {
 		this.servedtime = ra.nextInt(5)+4;
 		this.name = name;
 		this.setStarttime(localTime.getHour()+":"+localTime.getMinute()+":"+localTime.getSecond());
+		this.startT = localTime.getMinute()*60+localTime.getSecond();
 	}
 	
+	public int getStartT() {
+		return startT;
+	}
+
 	public int getNumber() {
 		return number;
 	}
@@ -55,6 +61,6 @@ public class Customer {
 	public String leave() {
 		this.localTime = LocalTime.now(); 
 		this.setLeavetime(localTime.getHour()+":"+localTime.getMinute()+":"+localTime.getSecond());
-		return this.leavetime;
+		return("Customer: "+name+" leave at "+leavetime+" ");
 	}
 }
