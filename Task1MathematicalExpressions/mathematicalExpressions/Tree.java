@@ -12,9 +12,6 @@ public class Tree {
 		while(i<exps.length) {
 			tree.setValue(exps[i]);
 			char depender = exps[i];
-			if(Character.isLetter(exps[i])){
-				depender = 'l';
-			}
 			if(Character.isDigit(exps[i])) {
 				depender = '0';
 			}
@@ -28,7 +25,6 @@ public class Tree {
 				parent.setLeft(tree);
 				tree = parent;
 			case ')':
-			case 'l':
 			case '0':
 		}
 			i++; 

@@ -1,16 +1,16 @@
 package mathematicalExpressions;
 
-public class TNode {
-	public char data;
+public class TNode<E> {
+	public E data;
 	public TNode parent;
 	public TNode left;
 	public TNode right;
 	
 	public TNode() {
-		data = (Character) null;
+		data = null;
 		parent = left = right = null;
 	}
-	public TNode(char input,TNode p) {
+	public TNode(E input,TNode p) {
 		data = input;
 		parent = p;
 		left = right = null;
@@ -33,10 +33,10 @@ public class TNode {
 	public void setParent(TNode parent) {
 		this.parent = parent;
 	}
-	public char value() {
+	public E value() {
 		return this.data;
 	}
-	public void setValue(char input) {
+	public void setValue(E input) {
 		this.data = input;
 	}
 	public boolean hasParent() {

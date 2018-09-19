@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class MainClass {
 	public static void main(String[] args) {
-//		TNode tree = new TNode();
+		TNode tree = new TNode();
 		Scanner sc = new Scanner(System.in);
 		String expression = null;
 		char[] exps = null;
