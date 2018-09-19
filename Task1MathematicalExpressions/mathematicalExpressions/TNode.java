@@ -55,4 +55,12 @@ public class TNode {
 			return false;
 		}
 	}
+	public boolean hasright() {
+		if(right != null) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 }

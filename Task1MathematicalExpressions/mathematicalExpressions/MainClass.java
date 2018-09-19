@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class MainClass {
 	public static void main(String[] args) {
-		TNode tree = new TNode();
+//		TNode tree = new TNode();
 		Scanner sc = new Scanner(System.in);
 		String expression = null;
 		char[] exps = null;
@@ -73,7 +73,23 @@ public class MainClass {
 				valid = true;
 			}
 		} while (valid == false);
-//		creatingTree(tree, exps);
+        for(int j = 0;j<exps.length;j++) {
+        	if(Character.isLetter(exps[j])) {
+        		String number;
+        		try {
+	        		System.out.println("Please input the value of '"+exps[j]+"':");
+	        		number = sc.nextLine();
+	        		char temp =number.charAt(0);
+	        		if(!Character.isDigit(temp))
+	        			throw new Exception();
+	        		exps[j] = temp;
+        		} catch(Exception e) {
+        			System.out.println("Invalid value, program stop!");
+        			return;
+        		}
+        	}
+        }
+        System.out.println(exps);
 	}
 }
 // private static TNode addLeaf(TNode tree,char[] exps,int i) {
