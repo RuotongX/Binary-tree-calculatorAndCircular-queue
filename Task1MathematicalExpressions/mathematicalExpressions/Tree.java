@@ -5,9 +5,7 @@ public class Tree {
 		int starter = 0;
 		int ender = 0;
 		int counter = 0;
-		TNode parent;
-		TNode left;
-		TNode right;
+		TNode parent = new TNode();
 		int i = 0;
 		while(i<exps.length) {
 			tree.setValue(exps[i]);
@@ -21,11 +19,26 @@ public class Tree {
 			case '+':
 			case '-':
 			case '(':
-				parent = new TNode();
-				parent.setLeft(tree);
-				tree = parent;
-			case ')':
+				if(parent.hasleft()) {
+					TNode right = new TNode(exps[i+2],parent);
+					parent.setRight(right);
+					TNode left = new TNode(exps[i+1],right);
+					right.setLeft(left);
+					left.setLeft(tree);
+					tree.setParent(left);
+					TNode rightr = new TNode(exps[i+3],right);
+					right.setRight(rightr);
+					tree = 
+				} else {
+					parent.setLeft(tree);
+					tree = parent;
+				}
+//			case ')':
+//				TNode right = tree;
+//				parent.setRight(right);
+//				tree = parent;
 			case '0':
+				
 		}
 			i++; 
 //			tree = createBracket(tree, exps, starter);
