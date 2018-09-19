@@ -100,7 +100,5 @@ public class QueueCArrayBase {
 
 	public int getCounter() {
 		return counter;
-	}
-
-	
+	}	
 }

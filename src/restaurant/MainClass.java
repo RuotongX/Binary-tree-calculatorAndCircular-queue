@@ -6,28 +6,6 @@ import java.time.LocalTime;
 
 public class MainClass {
 	public static void main(String[] args) {
-//		QueueCArrayBase terminal = new QueueCArrayBase();
-//		String input;
-//		Scanner sc = new Scanner(System.in);
-//		boolean open = true;
-//		while(!terminal.isFull()) {
-//			System.out.println("input");
-//			input =sc.nextLine();
-//			Customer c = new Customer(input);
-//			terminal.add(c);
-//		}
-//		terminal.remove();
-//		terminal.remove();
-//		Customer b = new Customer("6jjin");
-//		terminal.add(b);
-//		for(int i =0;i<terminal.getCustomerqueue().length;i++) {
-//			if(!terminal.hasCustomer(i)) {
-//				
-//			}else {
-//			System.out.println(terminal.getCustomerqueue()[i].join());
-//			}
-//		}
-//	}
 		String input;
 		Scanner sc = new Scanner(System.in);
 		boolean open = true;
