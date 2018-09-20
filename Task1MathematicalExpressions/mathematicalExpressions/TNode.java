@@ -10,11 +10,8 @@ public class TNode<E> {
 		data = null;
 		parent = left = right = null;
 	}
-	public TNode(E input,TNode p,TNode left,TNode right) {
+	public TNode(E input) {
 		data = input;
-		parent = p;
-		left = left;
-		right = right;
 	}
 	public TNode left() {
 		return this.left;
@@ -63,6 +60,10 @@ public class TNode<E> {
 		else {
 			return false;
 		}
+	}
+	
+	public TNode getparent() {
+		return parent;
 	}
 	public char getData() {
 		char c = (Character)data;

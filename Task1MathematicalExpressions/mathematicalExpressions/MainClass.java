@@ -92,10 +92,10 @@ public class MainClass {
         	if(Character.isLetter(exps[j])) {
         		String number;
         		try {
-	        		System.out.println("Please input the value of '"+exps[j]+"':");
+	        		System.out.println("Please input the value of '"+exps[j]+"': (can be only number(0-9), if you type more than 2 numbers it will only take the first number)");
 	        		number = sc.nextLine();
 	        		char temp =number.charAt(0);
-	        		if(!Character.isDigit(temp))
+	        		if(temp < '0' || temp > '9')
 	        			throw new Exception();
 	        		exps[j] = temp;
         		} catch(Exception e) {
@@ -104,8 +104,8 @@ public class MainClass {
         		}
         	}
         }
-       Tree tree = new Tree();
-       tree.creatingTree(exps);
+
+      
 //       for(int i =0;i<tree.number.size();i++) {
 //    	   System.out.println(tree.number.pop().getData());
 //       }
