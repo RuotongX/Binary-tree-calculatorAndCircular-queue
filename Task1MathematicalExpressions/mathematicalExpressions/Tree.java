@@ -1,103 +1,72 @@
 package mathematicalExpressions;
 
+import java.util.Stack;
+
 public class Tree {
-	private void creatingTree(TNode tree, char[] exps) {
-		int starter = 0;
-		int ender = 0;
-		int counter = 0;
-		TNode parent = new TNode();
-		int i = 0;
-		while(i<exps.length) {
-			tree.setValue(exps[i]);
-			char depender = exps[i];
-			if(Character.isDigit(exps[i])) {
-				depender = '0';
+	Stack<TNode> number = new Stack<TNode>();
+	Stack<TNode> operator = new Stack<TNode>();
+	public TNode creatingTree(char[] exps) {
+		operator.push(new TNode('#', null, null, null));
+		for (int i = 0; i < exps.length; i++) {
+			if (Character.isDigit(exps[i])) {
+				number.push(new TNode(exps[i], null, null, null));
+				continue;
 			}
-			switch(depender) {
-			case '*':
-			case '/':
-			case '+':
-			case '-':
-			case '(':
-				if(parent.hasleft()) {
-					TNode right = new TNode(exps[i+2],parent);
-					parent.setRight(right);
-					TNode left = new TNode(exps[i+1],right);
-					right.setLeft(left);
-					left.setLeft(tree);
-					tree.setParent(left);
-					TNode rightr = new TNode(exps[i+3],right);
-					right.setRight(rightr);
-					tree = 
-				} else {
-					parent.setLeft(tree);
-					tree = parent;
+			if (isOperator(exps[i]) || exps[i] == '(') {
+				Character top = operator.get(operator.size()-1).getData();
+				while(getPriority(top,exps[i])<0){
+					if(top == '#') {
+						return number.pop();
+					}
+					TNode temp = operator.pop();
+					TNode right = number.pop();
+					TNode left = number.pop();
+					temp.setLeft(left);
+					temp.setRight(right);
+					number.push(temp);
+					top = operator.get(operator.size()-1).getData();
 				}
-//			case ')':
-//				TNode right = tree;
-//				parent.setRight(right);
-//				tree = parent;
-			case '0':
+				operator.push(new TNode(exps[i],null,null,null));
+				continue;
+			}
+			if(exps[i] == ')') {
+				Character top = (Character) operator.get(operator.size()-1).getData();
+				while(top!='(') {
+					TNode temp = operator.pop();
+					TNode right = number.pop();
+					TNode left = number.pop();
+					temp.setLeft(left);
+					temp.setRight(right);
+					number.push(temp);
+					top = operator.get(operator.size()-1).getData();
 				
+				}
+				operator.pop();
+				continue;
+			}
 		}
-			i++; 
-//			tree = createBracket(tree, exps, starter);
-//			for(int j= starter;j>0;j--) {
-//				TNode le = (exps[j],tree);
-//				tree = getleftnode(tree);
-//				tree.setLeft(le);
-//			}
-//			for(int k = ender;k>exps.length;k++) {
-//				tempexps[starter+k-ender] = exps[k];
-//			}
-//			counter--;
-//			creatingTree
-//		}
-//
+		return null;
 	}
 
-//	private TNode createBracket(TNode tree, char[] exps, int i) {
-//		tree.left = new TNode('(', tree);
-//		tree.setValue(exps[i + 1]);
-//		TNode parent = new TNode();
-//		parent.setValue(exps[i + 2]);
-//		tree.setParent(parent);
-//		TNode right = new TNode('0', parent);
-//		i = i + 4;
-//		char temp = exps[i];
-//		if (temp == ')') {
-//			right.setValue(exps[i - 1]);
-//			TNode rl = new TNode(')', parent);
-//			parent.setRight(right);
-//			right.setRight(rl);
-//		} else {
-//			while (temp != ')') {
-//				right.setValue(exps[i]);
-//				TNode leftleaf = new TNode(exps[i - 1], right);
-//				parent.setRight(right);
-//				right.setLeft(leftleaf);
-//				TNode rightleaf;
-//				if (exps[i + 2] != ')') {
-//					rightleaf = new TNode(exps[i + 2], right);
-//				} else {
-//					rightleaf = new TNode(')', right);
-//				}
-//				right.setRight(rightleaf);
-//				temp = exps[i + 2];
-//				i = i + 2;
-//				parent = right;
-//			}
-//		}
-//		return right;
-//	}
-//
-//	private TNode getleftnode(TNode node) {
-//		while (node.hasParent()) {
-//			node = node.parent;
-//		}
-//		while (node.hasleft()) {
-//			node = node.left;
-//		}
-//		return node;
+	private boolean isOperator(char c) {
+		if(c=='*'||c=='+'||c=='/'||c=='-') {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	private int getPriority(char top,char input) {
+		if(input =='*'||input =='/') {
+			if(top == '+'||top=='-') {
+				return 1;
+			}
+			else {
+				return -1;
+			}
+		} 
+		else {
+			return -1;
+		}
 	}
 }
