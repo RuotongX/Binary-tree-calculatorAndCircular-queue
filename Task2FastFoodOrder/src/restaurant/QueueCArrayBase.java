@@ -1,12 +1,16 @@
 package restaurant;
-
+/**
+ * This is a class which generate the circular array queue
+ * @author RuotongXu
+ *
+ */
 public class QueueCArrayBase {
 	private int counter = 0;
 	private int order = 0;
 	private static int number = 0;
 	private Customer[] customerqueue;
 	
-	public QueueCArrayBase(){
+	public QueueCArrayBase(){//This is the constructor of this class which create a circular queue
 		this.customerqueue = new Customer[5];
 	}
 	
@@ -14,7 +18,8 @@ public class QueueCArrayBase {
 		return customerqueue;
 	}
 
-	public void add(Customer customer) {
+	public void add(Customer customer) {//The add method is use the 3 variable, order is the order in the queue, while the queue is full the order become 0, 
+		                                //the counter is how many objece in this queue, the number is show the object join early or later. 
 		while(!hasCustomer(order)) {
 			customer.setNumber(number);
 			this.customerqueue[order] = customer;
@@ -26,7 +31,8 @@ public class QueueCArrayBase {
 			order = 0;
 		}
 	}
-	public void remove() {
+	public void remove() {//The remove method is use the while loop to check the is the position in array is empty or not,
+		                  //it will find the smallest number in this array(due to the queue is first in first out, so it find the smallest number which is the most early object join this array. While object is removed, counter minus 1.
 		int temp = 0;
 		int min = 0;
 		int i =0;
@@ -54,7 +60,7 @@ public class QueueCArrayBase {
 		customerqueue[min] = null;
 		counter--;
 	}
-	public Customer getfirst() {
+	public Customer getfirst() {// The get first method is use the same way as the remove method. To find the most early object join this array.
 		int temp = 0;
 		int min = 0;
 		int i =0;
@@ -81,7 +87,7 @@ public class QueueCArrayBase {
 			}
 		return customerqueue[min];
 	}
-	public boolean hasCustomer(int i) {
+	public boolean hasCustomer(int i) {//The method is check a position in array is empty or not 
 		if(customerqueue[i]!=null) {
 			return true;
 		}
@@ -89,7 +95,7 @@ public class QueueCArrayBase {
 			return false;
 		}
 	}
-	public boolean isFull() {
+	public boolean isFull() {//The method is to check the array is full or not.
 		if(this.counter==5) {
 			return true;
 		}

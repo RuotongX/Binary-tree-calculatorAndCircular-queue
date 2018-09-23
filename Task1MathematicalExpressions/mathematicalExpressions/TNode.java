@@ -1,5 +1,10 @@
 package mathematicalExpressions;
-
+/**
+ * This is the Node class which is used for tree class.
+ * @author RuotongXu
+ *
+ * @param <E>
+ */
 public class TNode<E> {
 	public E data;
 	public TNode parent;

@@ -3,7 +3,11 @@ package restaurant;
 import java.util.Scanner;
 import java.util.Random;
 import java.time.LocalTime;
-
+/**
+ * This is the main class, which takes the input and create three terminal, devide the new customer into different terminals and also check are there any leavers.
+ * @author RuotongXu
+ *
+ */
 public class MainClass {
 	public static void main(String[] args) {
 		String input;
@@ -15,6 +19,8 @@ public class MainClass {
 		Random ra = new Random();
 		while (open) {
 			int terminal;
+			System.out.println("Welcome to our restruant, our resturuant has 3 terminal, if you want to run the system type customer name, if you want to stop just type'stop'");
+			System.out.println("After you stop the system or the resturant is full, all customer name and which terminal they were in will be display");
 			System.out.println("Please type the customer name:");
 			input = sc.nextLine();
 			if (input.equals("stop")) {
@@ -24,7 +30,7 @@ public class MainClass {
 			Customer customer = new Customer(input);
 			boolean other = true;
 			while(other == true) {
-				terminal = ra.nextInt(3) + 1;
+				terminal = ra.nextInt(3) + 1;//Used a random number to devide people into different terminal, once one terminal is full the random number will generate again until to get a not full terminal number
 				switch (terminal) {
 				case 1:
 					if (Terminal1.isFull()) {
@@ -96,7 +102,7 @@ public class MainClass {
 		}
 	}
 
-	public static void leavecheck(QueueCArrayBase terminal, int number) {
+	public static void leavecheck(QueueCArrayBase terminal, int number) {//Check the time with the customer served time with the real time, once the time is arrived or over the customer will leave.
 		LocalTime localtime = LocalTime.now();
 		if (terminal.getCounter() == 0) {
 			return;

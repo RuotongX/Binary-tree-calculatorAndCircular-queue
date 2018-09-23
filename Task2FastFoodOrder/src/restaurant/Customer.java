@@ -1,7 +1,11 @@
 package restaurant;
 import java.time.LocalTime;
 import java.util.Random;
-
+/**
+ * This is a class which store the attributes of customer, and also generate the served time.
+ * @author RuotongXu
+ *
+ */
 public class Customer {
 	private String name;
 	private int servedtime;
